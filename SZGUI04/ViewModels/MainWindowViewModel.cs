@@ -61,7 +61,7 @@
             {
                 get
                 {
-                return 0;
+                return 2;
                 }
             }
 
@@ -69,7 +69,7 @@
             {
                 get
                 {
-                return 0;
+                return 1;
                 }
             }
 
