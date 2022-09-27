@@ -7,6 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0"></ListBox>
+        <StackPanel Grid.Column="1">
+            <Button Content="Add to army" Margin="10" Padding="10"></Button>
+            <Button Content="Remove from army" Margin="10" Padding="10"></Button>
+            <Button Content="Edit Hero" Margin="10" Padding="10"></Button>
+            <Label Content="5.4" ContentStringFormat="Power: {0}" HorizontalContentAlignment="Center"></Label>
+            <ProgressBar Value="5" Maximum="10" Height="25"></ProgressBar>
+            <Label Content="5.4" ContentStringFormat="Speed: {0}" HorizontalContentAlignment="Center"></Label>
+            <ProgressBar Value="5" Maximum="10" Height="25"></ProgressBar>
+        </StackPanel>
+        <ListBox Grid.Column="2"></ListBox>
 
     </Grid>
 </Window>
