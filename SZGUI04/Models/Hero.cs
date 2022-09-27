@@ -38,5 +38,15 @@ namespace SZGUI04.Models
             set { oldal = value; }
         }
 
+
+        public Hero GetCopy()
+        {
+            return new Hero()
+            {
+                Name = this.Name,
+                Power = this.Power,
+                Speed = this.Speed
+            };
+        }
     }
 }

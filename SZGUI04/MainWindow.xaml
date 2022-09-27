@@ -4,15 +4,46 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SZGUI04"
+        xmlns:helper="clr-namespace:SZGUI04.Helper"
+        xmlns:vms="clr-namespace:SZGUI04.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="HeroEditor" Height="450" Width="800">
+    <Window.DataContext>
+        <vms:MainWindowViewModel></vms:MainWindowViewModel>
+    </Window.DataContext>
+    <Window.Resources>
+        <helper:BackgroundColoring x:Key="colorconvert"></helper:BackgroundColoring>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0"></ListBox>
+        <ListBox Grid.Column="0" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Barrack}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1" Background="{Binding AVGPower, Mode=OneWay, Converter={StaticResource colorconvert}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="{Binding Name}"></Label>
+                            <Label Content="{Binding Power}" Grid.Row="1" ContentStringFormat="Power: {0}"></Label>
+                            <Label Content="{Binding Speed}" Grid.Row="1" Grid.Column="1" ContentStringFormat="Speed: {0}"></Label>
+                            <ProgressBar Value="{Binding Power}" Maximum="10" Grid.Row="2" Height="20"></ProgressBar>
+                            <ProgressBar Value="{Binding Speed}" Maximum="10" Grid.Row="2" Grid.Column="1" Height="20"></ProgressBar>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <StackPanel Grid.Column="1">
             <Button Content="Add to army" Margin="10" Padding="10"></Button>
             <Button Content="Remove from army" Margin="10" Padding="10"></Button>
@@ -22,7 +53,17 @@
             <Label Content="5.4" ContentStringFormat="Speed: {0}" HorizontalContentAlignment="Center"></Label>
             <ProgressBar Value="5" Maximum="10" Height="25"></ProgressBar>
         </StackPanel>
-        <ListBox Grid.Column="2"></ListBox>
+        <ListBox Grid.Column="2" ItemsSource="{Binding Army}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding Name}"></Label>
+                        <Label Content="{Binding Power}"></Label>
+                        <Label Content="{Binding Speed}"></Label>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
     </Grid>
 </Window>
